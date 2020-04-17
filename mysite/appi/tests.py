@@ -56,33 +56,3 @@ for a in range(len(data)):
         total_deaths.append(deaths)
         cases = 0
         deaths = 0
-
-
-
-'''
-<div id="container"></div>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <script>
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'testi'
-        },
-        xAxis: {
-            categories: {{ countries|safe }}
-        },
-        series: [{
-            name: 'Cases per country',
-            data: {{ total_cases|safe }},
-            color: 'green'
-        }, {
-            name: 'Deaths per country',
-            data: {{ total_deaths|safe }},
-            color: 'red'
-        }]
-    });
-
-    </script>
-'''
