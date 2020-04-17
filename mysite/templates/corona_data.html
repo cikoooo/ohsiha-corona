@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+
+    {% block content %}
+        Too many entries?
+        <p><a href="{% url 'corona_visualization' %}">Check out visualization</a></p>
+    {% endblock %}
+
+    <div class='container'>
+        <h2>Corona Data around the world (as per WHO)</h2>
+        
+        <input class='form-control mb-4' id='tableSearch' onkeyup='myFunction()' type='text'
+            placeholder='Search...'>
+
+        <table id='table_id' class='table table-bordered'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th>Date</th>
+                    <th>Country</th>
+                    <th>Cases</th>
+                    <th>Deaths</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in corona_data %}
+                <tr>
+                    <td>{{x.dateRep}}</td>
+                    <td>{{x.countriesAndTerritories}}</td>
+                    <td>{{x.cases}}</td>
+                    <td>{{x.deaths}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</html>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('tableSearch');
+        filter = input.value.toUpperCase();
+        table = document.getElementById('table_id');
+        tr = table.getElementsByTagName('tr');
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName('td')[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+    }
+</script>

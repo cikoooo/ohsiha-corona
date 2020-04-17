@@ -1,0 +1,28 @@
+<h1>News</h1>
+
+<table border='1'>
+<thead>
+    <tr>
+    <th>Date</th>
+    <th>Main</th>
+    <th>Support</th>
+    <th>View</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for news in object_list %}
+    <tr>
+    <td>{{ news.Date }}</td>
+    <td>{{ news.Main }}</td>
+    <td>{{ news.Support }}</td>
+    <td><a href="{% url 'news_view' news.id %}">view</a></td>
+    <td><a href="{% url 'news_edit' news.id %}">edit</a></td>
+    <td><a href="{% url 'news_delete' news.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<a href="{% url 'news_new' %}">Upload new news</a>
